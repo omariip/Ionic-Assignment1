@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+      <app-header></app-header>
+</ion-header>
+
+<ion-content>
+  <ion-input placeholder="Agent ID:" [(ngModel)]="agentID"></ion-input>
+  <ion-button (click)="showAppointments()">Load/Hide Appointments</ion-button>
+  <ion-button [disabled]="agentID === ''" [routerLink]="['/appointment-booking-page', {myData: this.agentID}]">Book Appointment</ion-button>
+  <ion-button (click)="refreshAppointments()" (click)="showAppointments()">Refresh List &nbsp;<ion-icon size="medium" name="refresh-outline"></ion-icon></ion-button><br><br>
+
+  <div *ngIf="confirmDeletion" class="red">
+    Delete Appointment
+    <ion-button (click)="deleteAppointment()">Confirm Deletion</ion-button>
+  </div>
+  <div *ngIf="showAppointment">
+    <ion-card *ngFor= "let ap of allAppointments; let i = index">
+      <ion-card-header>
+        <ion-card-title>{{ap.appAgent}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+      Date: {{ap.appDate | date: 'mediumDate'}}<br>
+      Time: {{ap.appTime.hours + ":" + ap.appTime.minutes}}<br>
+      OHIP: {{ap.appOHIP}}<br>
+      Email: {{ap.appEmail}}<br>
+      Phone: {{ap.appPhone}}<br>
+      <br>
+        <ion-button (click)="firstDelete(i)">Delete</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- <ion-list *ngFor = "let ap of allAppointments">
+    <ion-item>
+     {{ap.appDate | date: 'mediumDate'}}
+     {{ap.appTime.hours +':' + ap.appTime.minutes}}
+     {{ap.appOHIP}}
+     {{ap.appEmail}}
+     {{ap.appPhone}}
+     {{ap.appAgent}}
+    </ion-item>  
+  </ion-list> -->
+
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

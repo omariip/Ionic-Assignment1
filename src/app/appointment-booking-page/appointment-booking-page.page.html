@@ -1,0 +1,25 @@
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Agent ID: {{data.myData}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-input placeholder="Date" type="date" [(ngModel)]="date"></ion-input>
+      <ion-input placeholder="Time" type="time" [(ngModel)]="time"></ion-input>
+      <ion-input placeholder="OHIP Number" type="number" [(ngModel)]="ohip"></ion-input>
+      <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
+      <ion-input placeholder="Phone Number" [(ngModel)]="phone" type="number"></ion-input>
+    </ion-card-content>
+  </ion-card><br>
+  
+  <ion-button (click)="addAppointment()" [routerLink]="['/home']" [disabled]="disableInput()">Add Appointment</ion-button>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>
